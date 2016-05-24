@@ -13,9 +13,12 @@ Replace::Replace() {
     ReferencePage = new int[sizeof(int)*PageNumber];
     EliminatePage = new int[sizeof(int)*PageNumber];
     //输入引用页号序列(页面走向),初始化引用页数组
-    cout << "Please input reference page string:";
-    for(i=0; i<PageNumber; i++)
-	cin >> ReferencePage[i]; //引用页暂存引用数组
+    cout << "Generating reference page string:";
+    for(i=0; i<PageNumber; i++) {
+	ReferencePage[i] = rand()%5+1; //引用页暂存引用数组，通过随机数模拟
+	cout << ReferencePage[i] << " ";
+    }
+    cout << endl;
     //设定内存实页数(帧数),并分配相应的实页号记录数组空间(页号栈)
     cout << "Please input page frames:";
     cin >> FrameNumber;
@@ -306,6 +309,7 @@ void Replace::Lfu(void)
 	else
 	    cout << endl;
 
+	cout << "Frequency record:";
 	for(i=0; i<FrameNumber; i++)
 	    if(PageFrames[i] >= 0)
 		cout << frequencyRecord[i] << " ";
@@ -362,6 +366,7 @@ void Replace::Mfu(void)
 	else
 	    cout << endl;
 
+	cout << "Frequency record:";
 	for(i=0; i<FrameNumber; i++)
 	    if(PageFrames[i] >= 0)
 		cout << frequencyRecord[i] << " ";
